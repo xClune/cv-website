@@ -15,7 +15,7 @@ const CVDoc = ({formData}) => {
                 <div className='cv-body gap-5 w-full'>
                     <div className='cv-section'>
                         <h2 className='mb-2 border-b-2 border-gray-300'>Summary</h2>
-                        <p className=''>{formData.summary ? formData.summary : 'lorem ipsum '}</p>
+                        <p className=''>{formData.summary ? formData.summary : 'A summary on your experience and achievements'}</p>
                         <p></p>
                     </div>
                 </div>

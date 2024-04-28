@@ -1,3 +1,5 @@
+import Button from "./Button";
+import { useState } from "react";
 
 const CVForm = ({formData, setFormData}) => {
   
@@ -23,6 +25,22 @@ const CVForm = ({formData, setFormData}) => {
     setFormData({ ...formData, [key]: items });
   };
 
+  const clearFields = () => {
+    setFormData({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    summary: '',
+    experience: [],
+    education: [],
+    skills: [],
+    languages: [],
+    certifications: [],
+  })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can do something with the formData here, like send it to a server or process it further
@@ -30,7 +48,9 @@ const CVForm = ({formData, setFormData}) => {
   };
 
   return (
-    <form className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 m-4  text-gray-700 text-sm font-bold overflow-scroll" onSubmit={handleSubmit}>
+    <>
+    <Button name={'Clear All'} clearFields={clearFields}/>
+    <form className="max-w-md flex flex-col text-start bg-white shadow-md rounded px-8 pt-6 pb-8 m-4 text-gray-700 text-sm font-bold overflow-scroll" onSubmit={handleSubmit}>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
           First Name:
@@ -109,7 +129,7 @@ const CVForm = ({formData, setFormData}) => {
         </label>
         <ul>
           {formData.experience.map((exp, index) => (
-            <li key={index} className="mb-2">
+            <li key={index} className="mb-2 flex flex-row">
               <input
                 type="text"
                 value={exp}
@@ -119,9 +139,9 @@ const CVForm = ({formData, setFormData}) => {
               <button
                 type="button"
                 onClick={() => handleRemoveItem('experience', index)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Remove
+                -
               </button>
             </li>
           ))}
@@ -129,9 +149,9 @@ const CVForm = ({formData, setFormData}) => {
         <button
           type="button"
           onClick={() => handleAddItem('experience')}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-green-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Add Experience
+          +
         </button>
       </div>
       {/* Education */}
@@ -141,7 +161,7 @@ const CVForm = ({formData, setFormData}) => {
         </label>
         <ul>
           {formData.education.map((edu, index) => (
-            <li key={index} className="mb-2">
+            <li key={index} className="mb-2 flex flex-row">
               <input
                 type="text"
                 value={edu}
@@ -151,9 +171,9 @@ const CVForm = ({formData, setFormData}) => {
               <button
                 type="button"
                 onClick={() => handleRemoveItem('education', index)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Remove
+                -
               </button>
             </li>
           ))}
@@ -161,9 +181,9 @@ const CVForm = ({formData, setFormData}) => {
         <button
           type="button"
           onClick={() => handleAddItem('education')}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-green-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Add Education
+          +
         </button>
       </div>
       {/* Skills */}
@@ -173,7 +193,7 @@ const CVForm = ({formData, setFormData}) => {
         </label>
         <ul>
           {formData.skills.map((skill, index) => (
-            <li key={index} className="mb-2">
+            <li key={index} className="mb-2 flex flex-row">
               <input
                 type="text"
                 value={skill}
@@ -183,9 +203,9 @@ const CVForm = ({formData, setFormData}) => {
               <button
                 type="button"
                 onClick={() => handleRemoveItem('skills', index)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Remove
+                -
               </button>
             </li>
           ))}
@@ -193,9 +213,9 @@ const CVForm = ({formData, setFormData}) => {
         <button
           type="button"
           onClick={() => handleAddItem('skills')}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-green-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Add Skill
+          +
         </button>
       </div>
       {/* Languages */}
@@ -205,7 +225,7 @@ const CVForm = ({formData, setFormData}) => {
         </label>
         <ul>
           {formData.languages.map((lang, index) => (
-            <li key={index} className="mb-2">
+            <li key={index} className="mb-2 flex flex-row">
               <input
                 type="text"
                 value={lang}
@@ -215,9 +235,9 @@ const CVForm = ({formData, setFormData}) => {
               <button
                 type="button"
                 onClick={() => handleRemoveItem('languages', index)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Remove
+                -
               </button>
             </li>
           ))}
@@ -225,9 +245,9 @@ const CVForm = ({formData, setFormData}) => {
         <button
           type="button"
           onClick={() => handleAddItem('languages')}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-green-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Add Language
+          +
         </button>
       </div>
       {/* Certifications */}
@@ -237,7 +257,7 @@ const CVForm = ({formData, setFormData}) => {
         </label>
         <ul>
           {formData.certifications.map((cert, index) => (
-            <li key={index} className="mb-2">
+            <li key={index} className="mb-2 flex flex-row">
               <input
                 type="text"
                 value={cert}
@@ -247,9 +267,9 @@ const CVForm = ({formData, setFormData}) => {
               <button
                 type="button"
                 onClick={() => handleRemoveItem('certifications', index)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Remove
+                -
               </button>
             </li>
           ))}
@@ -257,20 +277,21 @@ const CVForm = ({formData, setFormData}) => {
         <button
           type="button"
           onClick={() => handleAddItem('certifications')}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-green-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Add Certification
+          +
         </button>
       </div>
-      <div className="mb-6">
+      <div className="mb-6 self-center">
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-blue-500 hover:bg-blue-700 text-white text-md font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline"
         >
           Submit
         </button>
       </div>
     </form>
+    </>
   );
 };
 
